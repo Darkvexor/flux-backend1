@@ -1,13 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const helmet = require('helmet');
 require('dotenv').config();
 
 const app = express();
 
-app.use(helmet());
-app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'https://flux-coin.vercel.app'], credentials: true }));
+// CORS first - before anything else
+app.use(cors({ 
+  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'https://flux-coin.vercel.app'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-key']
+}));
+
+// Handle preflight
+app.options('*', cors());
+
 app.use(express.json());
 
 app.use('/api/auth', require('./routes/auth'));
