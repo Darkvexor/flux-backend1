@@ -1,14 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
 
-// CORS - allow all origins for now
 app.use(cors());
-
 app.use(express.json());
+
+// Debug: show what files exist
+console.log('__dirname:', __dirname);
+console.log('Files in routes:', require('fs').readdirSync(path.join(__dirname, 'routes')));
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/user', require('./routes/user'));
