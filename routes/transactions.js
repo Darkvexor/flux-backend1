@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Transaction = require('../models/Transaction');
+const Transaction = require('../models/transaction');
 const PaymentWallet = require('../models/PaymentWallet');
-const User = require('../models/User');
+const User = require('../models/user');
 
 // Create Purchase
 router.post('/purchase', async (req, res) => {

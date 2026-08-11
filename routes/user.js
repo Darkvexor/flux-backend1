@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../models/user');
 const Transaction = require('../models/Transaction');
 
 // Get user by ID (sent in query)
